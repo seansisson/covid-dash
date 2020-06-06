@@ -10,9 +10,7 @@ const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
+  // This creates a tab navigation footer that allows users to switch between screens
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
