@@ -7,9 +7,11 @@ import { BarChart } from 'react-native-chart-kit'
 export default function BarChartsScreen() {
   // Create state parameters for data parameters
   // Also create constants for API URL and headers, etc
-  const [recovered, setRecovered] = useState(0);
-  const [confirmed, setConfirmed] = useState(0);
-  const [deaths, setDeaths] = useState(0);
+  const [us, setUs] = useState(0);
+  const [br, setBr] = useState(0);
+  const [ru, setRu] = useState(0);
+  const [mx, setMx] = useState(0);
+  const [ca, setCa] = useState(0);
   const url = "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total";
   const options = {
     "method": "GET",
@@ -23,15 +25,33 @@ export default function BarChartsScreen() {
   fetch(url.concat('?country=USA'), options)
   .then(response => response.json())
   .then(responseJson => {
-    setRecovered(responseJson['data'].recovered);
-    setConfirmed(responseJson['data'].confirmed);
-    setDeaths(responseJson['data'].deaths);
+    setUs(responseJson['data'].confirmed);
+  });
+  fetch(url.concat('?country=Brazil'), options)
+  .then(response => response.json())
+  .then(responseJson => {
+    setBr(responseJson['data'].confirmed);
+  });
+  fetch(url.concat('?country=Russia'), options)
+  .then(response => response.json())
+  .then(responseJson => {
+    setRu(responseJson['data'].confirmed);
+  });
+  fetch(url.concat('?country=Mexico'), options)
+  .then(response => response.json())
+  .then(responseJson => {
+    setMx(responseJson['data'].confirmed);
+  });
+  fetch(url.concat('?country=Canada'), options)
+  .then(response => response.json())
+  .then(responseJson => {
+    setCa(responseJson['data'].confirmed);
   });
   var barData = {
-    labels: ['Recovered', 'Confirmed', 'Deaths'],
+    labels: ['USA', 'Brasil', 'Russia', 'Mexico', 'Canada'],
     datasets: [
       {
-        data: [recovered, confirmed, deaths],
+        data: [us, br, ru, mx, ca],
       },
     ],
   };
@@ -46,12 +66,12 @@ export default function BarChartsScreen() {
         data={barData}
         width={Dimensions.get('window').width}
         height={220}
-        yAxisLabel={'# of Infected'}
+        yAxisLabel={'Confirmed Cases'}
         chartConfig={{
           backgroundColor: '#e26a00',
           backgroundGradientFrom: '#fb8c00',
           backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2,
+          decimalPlaces: 0,
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
             borderRadius: 16
