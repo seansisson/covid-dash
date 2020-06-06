@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import ChartsScreen from '../screens/ChartsScreen';
+import BarChartsScreen from '../screens/BarChartsScreen';
+import PieChartsScreen from '../screens/PieChartsScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -26,18 +26,18 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="BarCharts"
+        component={BarChartsScreen}
         options={{
-          title: 'Resources',
+          title: 'Bar Charts',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
       <BottomTab.Screen
-        name="Charts"
-        component={ChartsScreen}
+        name="PieCharts"
+        component={PieChartsScreen}
         options={{
-          title: 'Charts',
+          title: 'Pie Charts',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
@@ -51,7 +51,11 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+    case 'BarCharts':
+      return 'Cases per Country';
+    case 'PieCharts':
+      return 'U.S. Cases';
+    default:
+      return 'ERR';
   }
 }
