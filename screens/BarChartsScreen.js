@@ -17,7 +17,7 @@ export default function BarChartsScreen() {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
-      "x-rapidapi-key": "3b453fb35emsh676135407fb80d9p153acajsn966cdc2afb9a"
+      "x-rapidapi-key": ""
     }
   }
 
